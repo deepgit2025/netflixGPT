@@ -1,9 +1,17 @@
 import React, { useRef, useState } from 'react'
 import { checkEmailPassword } from '../utils/formValidation';
+import { auth } from '../utils/firebase';
+import { createUserWithEmailAndPassword ,signInWithEmailAndPassword} from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { addData } from '../utils/slices/userSlice';
 
 const Signform = () => {
   const [isSigninPage, setSignin] = useState(true);
   const [formError, setFormError] = useState('');
+  const navigate = useNavigate();
+ 
+  const dispatch = useDispatch();
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
@@ -15,7 +23,33 @@ const Signform = () => {
         return (formerror) ? formerror : '';
       });
       if(formerror) return;
-      console.log('can add details now')
+      //singup now
+      if(isSigninPage){
+        signInWithEmailAndPassword(auth,  email.current.value, password.current.value)
+          .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            setFormError(errorMessage)
+          });
+      }
+      else{
+        createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+        .then((userCredential) => {
+          // Signed up 
+          const user = userCredential.user;
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setFormError(errorMessage)
+          // ..
+        });
+      }
+    
   }
   return (
     <div className='z-10 bg-black/50 relative h-fit max-w-[400px] w-full border-black border-[1px] p-[32px] rounded-xl'>
