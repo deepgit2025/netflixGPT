@@ -43,7 +43,7 @@ const Header = () => {
         <div className="image w-[80px]">
           <img src={logo_img} alt="logo-image" className='h-full w-full object-fill'/>
         </div>
-        {(userValue) && <div className="logout cursor-pointer text-black text-[16px]" onClick={handleLogout}>Logout</div>}
+        {(userValue) && <div className="logout cursor-pointer text-white text-[16px] bg-black px-[20px] py-[8px] rounded hover:opacity-75" onClick={handleLogout}>Logout</div>}
     </div>
   )
 }

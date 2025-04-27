@@ -9,9 +9,6 @@ import { addData } from '../utils/slices/userSlice';
 const Signform = () => {
   const [isSigninPage, setSignin] = useState(true);
   const [formError, setFormError] = useState('');
-  const navigate = useNavigate();
- 
-  const dispatch = useDispatch();
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
