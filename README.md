@@ -53,3 +53,10 @@ rapid api setup for movies done
 movieredux done
 movie poster component done
 got data from movies done
+complete movie poster
+made a object array for all movuie name
+called moviefetch for all movie name
+showed rsult on page
+made moviewrapper there
+made movie list inside moviewrapper
+updatwd redux of movieslice to store array of movies

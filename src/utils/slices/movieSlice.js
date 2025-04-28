@@ -1,15 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {};
+const initialState = {
+    movieData:{}
+};
 export const movieSlice = createSlice({
     name: 'movies',
     initialState,
     reducers : {
         addMovieDetails :(state, action)=>{
-            state.movieData = action.payload;
+            const {movieName, movie} =action.payload;
+            state.movieData[movieName] = movie;
         },
-        removeMovieDetails: (state)=>{
-            state.movieData = null;
+        removeMovieDetails: (state, action)=>{
+            const {movieName} =action.payload;
+            state.movieData[movieName] = null;
         }
     }
 })
